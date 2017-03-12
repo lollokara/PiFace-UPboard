@@ -129,8 +129,8 @@ class MCP23S17(SPIDevice):
         :param read_write_cmd: Read or write command.
         :type read_write_cmd: int
         """
-        board_addr_pattern = (self.hardware_addr & 0b111) << 1
-        #board_addr_pattern = (self.hardware_addr << 1) & 0xE
+        # board_addr_pattern = (self.hardware_addr & 0b111) << 1
+        board_addr_pattern = (self.hardware_addr << 1) & 0xE
         rw_cmd_pattern = read_write_cmd & 1  # make sure it's just 1 bit long
         return 0x40 | board_addr_pattern | rw_cmd_pattern
 

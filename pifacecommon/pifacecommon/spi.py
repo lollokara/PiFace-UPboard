@@ -15,7 +15,7 @@ class SPIInitError(Exception):
 
 class SPIDevice(object):
     """An SPI Device at /dev/spi<bus>.<chip_select>."""
-    def __init__(self, bus=2, chip_select=0, spi_callback=None):
+    def __init__(self, bus=0, chip_select=0, spi_callback=None):
         """Initialises the SPI device file descriptor.
 
         :param bus: The SPI device bus number

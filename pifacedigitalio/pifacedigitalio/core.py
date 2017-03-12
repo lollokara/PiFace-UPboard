@@ -5,7 +5,7 @@ import pifacecommon.interrupts
 DEFAULT_SPI_BUS = 2
 DEFAULT_SPI_CHIP_SELECT = 0
 
-MAX_BOARDS = 1
+MAX_BOARDS = 4
 # list of PiFace Digitals for digital_read/digital_write
 _pifacedigitals = [None] * MAX_BOARDS
 
@@ -49,7 +49,7 @@ class PiFaceDigital(pifacecommon.mcp23s17.MCP23S17,
                  hardware_addr=0,
                  bus=DEFAULT_SPI_BUS,
                  chip_select=DEFAULT_SPI_CHIP_SELECT,
-                 init_board=False):
+                 init_board=True):
         super(PiFaceDigital, self).__init__(hardware_addr, bus, chip_select)
 
         self.input_pins = [pifacecommon.mcp23s17.MCP23S17RegisterBitNeg(
@@ -100,8 +100,6 @@ class PiFaceDigital(pifacecommon.mcp23s17.MCP23S17,
             pifacecommon.mcp23s17.INTPOL_LOW
         )
         self.iocon.value = ioconfig
-        print("uno"+str(self.iocon.value))
-        print("due"+str(ioconfig))
         if self.iocon.value == ioconfig:
             raise NoPiFaceDigitalDetectedError(
                 "No PiFace Digital board detected (hardware_addr={h}, "
